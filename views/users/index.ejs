@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des utilisateurs</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Utilisateurs enregistrés</h1>
+
+    <a href="/users/new" class="add-user-link">➕ Ajouter un utilisateur</a>
+
+    <% if (users.length === 0) { %>
+      <p>Aucun utilisateur pour le moment.</p>
+    <% } else { %>
+      <table border="1" cellspacing="0" cellpadding="8">
+        <thead>
+          <tr style="background-color: #007bff; color: white;">
+            <th>Nom d’utilisateur</th>
+            <th>Email</th>
+            <th>Créé le</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+            <tr style="background-color: #fff;">
+              <td><%= user.username %></td>
+              <td><%= user.email %></td>
+              <td><%= new Date(user.createdAt).toLocaleDateString('fr-FR') %></td>
+              <td>
+                <!-- 🔧 Bouton Modifier -->
+                <a href="/users/<%= user._id %>/edit" class="btn-edit">✏️ Modifier</a>
+
+                <!-- 🗑️ Bouton Supprimer -->
+                <form action="/users/<%= user._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Supprimer cet utilisateur ?');" style="display:inline;">
+                  <button type="submit" style="color: red;">🗑 Supprimer</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <a href="/dashboard" style="display: block; margin-top: 20px;">← Retour au tableau de bord</a>
+  </main>
+</body>
+</html>
+

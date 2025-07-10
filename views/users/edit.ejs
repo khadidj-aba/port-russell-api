@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un utilisateur</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Modifier un utilisateur</h1>
+
+    <% if (typeof error !== 'undefined') { %>
+      <p style="color: red;">❌ <%= error %></p>
+    <% } %>
+
+    <!-- ✅ FORMULAIRE CORRIGÉ -->
+    <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+      <label>Email :
+        <input type="email" name="email" required value="<%= user.email %>">
+      </label><br><br>
+
+      <label>Nom d'utilisateur :
+        <input type="text" name="username" required value="<%= user.username %>">
+      </label><br><br>
+
+      <label>Nouveau mot de passe :
+        <input type="password" name="password">
+      </label><br><br>
+
+      <button type="submit">Enregistrer</button>
+    </form>
+
+    <a href="/users">← Retour</a>
+  </main>
+</body>
+</html>
+

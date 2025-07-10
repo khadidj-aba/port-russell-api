@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un Catway</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <main>
+    <h2>Ajouter un nouveau Catway</h2>
+
+    <% if (message) { %>
+      <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <form action="/catways" method="POST">
+      <label for="catwayNumber">Numéro du Catway :</label>
+      <input type="number" name="catwayNumber" required>
+
+      <label for="catwayType">Type :</label>
+      <select name="catwayType" required>
+        <option value="long">Long</option>
+        <option value="short">Court</option>
+      </select>
+
+      <label for="catwayState">État :</label>
+      <select name="catwayState" required>
+        <option value="libre">Libre</option>
+        <option value="occupé">Occupé</option>
+      </select>
+
+      <button type="submit">Enregistrer</button>
+    </form>
+
+    <br>
+    <a href="/catways">← Retour à la liste</a>
+  </main>
+
+</body>
+</html>

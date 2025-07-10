@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Documentation API - Port Russell</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      color: #004080;
+    }
+
+    section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #0056b3;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    strong {
+      color: #d63384;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background-color: #0056b3;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+    }
+
+    .back-link:hover {
+      background-color: #003f80;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📘 Documentation de l'API - Port Russell</h1>
+
+  <!-- Authentification -->
+  <section>
+    <h2>🔐 Authentification</h2>
+    <ul>
+      <li><strong>POST</strong> /register – Inscription utilisateur</li>
+      <li><strong>POST</strong> /login – Connexion</li>
+      <li><strong>GET</strong> /logout – Déconnexion</li>
+    </ul>
+  </section>
+
+  <!-- Catways -->
+  <section>
+    <h2>🛥️ Catways</h2>
+    <ul>
+      <li><strong>GET</strong> /catways – Liste des catways</li>
+      <li><strong>GET</strong> /catways/new – Formulaire ajout</li>
+      <li><strong>POST</strong> /catways – Enregistrer un nouveau catway</li>
+      <li><strong>GET</strong> /catways/:id/edit – Modifier un catway</li>
+      <li><strong>POST</strong> /catways/:id/delete – Supprimer un catway</li>
+    </ul>
+  </section>
+
+  <!-- Réservations -->
+  <section>
+    <h2>📅 Réservations</h2>
+    <ul>
+      <li><strong>GET</strong> /reservations – Liste des réservations</li>
+      <li><strong>GET</strong> /reservations/new – Formulaire création</li>
+      <li><strong>POST</strong> /reservations – Enregistrer une réservation</li>
+      <li><strong>POST</strong> /reservations/:id/delete – Supprimer une réservation</li>
+    </ul>
+  </section>
+
+  <!-- Utilisateurs -->
+  <section>
+    <h2>👥 Utilisateurs</h2>
+    <ul>
+      <li><strong>GET</strong> /users – Liste des utilisateurs</li>
+      <li><strong>GET</strong> /users/new – Formulaire création</li>
+      <li><strong>POST</strong> /users – Ajouter un utilisateur</li>
+      <li><strong>GET</strong> /users/:id/edit – Formulaire modification</li>
+      <li><strong>PUT</strong> /users/:id – Enregistrer les modifications</li>
+      <li><strong>POST</strong> /users/:id/delete – Supprimer un utilisateur</li>
+    </ul>
+  </section>
+
+  <a href="/dashboard" class="back-link">← Retour au tableau de bord</a>
+
+</body>
+</html>

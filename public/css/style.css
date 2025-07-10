@@ -1,0 +1,172 @@
+/* Style général */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5fbff;
+    color: #222;
+  }
+  
+  /* Header */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f8ff;
+    padding: 10px 30px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .logo {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #004d70;
+  }
+  
+  .header-right {
+    text-align: right;
+    font-size: 14px;
+  }
+  
+  /* Trait séparateur */
+  .separateur {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0;
+  }
+  
+  /* Navigation */
+  .nav-menu {
+    background-color: #e9f4ff;
+    padding: 8px 30px;
+  }
+  
+  .nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-menu li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .nav-menu li a:hover {
+    text-decoration: underline;
+    background-color: #dceeff;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  /* Contenu principal */
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  main h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #222;
+  }
+  
+  main p {
+    font-size: 18px;
+    color: #444;
+  }
+  
+  .add-catway-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .add-catway-link:hover {
+    background-color: blue;
+  }
+  
+  /* Responsive - Mobile & Tablette */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .header-right {
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-menu li a {
+    display: block;
+    width: 100%;
+    padding: 6px;
+  }
+
+  main {
+    padding: 15px;
+    margin: 20px 10px;
+  }
+
+  main h2 {
+    font-size: 20px;
+  }
+
+  main p {
+    font-size: 16px;
+  }
+
+  .add-catway-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  table {
+    font-size: 14px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .dashboard-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

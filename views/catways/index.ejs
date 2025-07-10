@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Catways</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #eef7ff; font-family: sans-serif; padding: 20px;">
+  <h1 style="color: #004a99;">Liste des Catways</h1>
+
+  <a href="/catways/new" style="color: #004a99; font-size: 18px;">➕ Ajouter un nouveau Catway</a>
+
+  <% if (catways.length === 0) { %>
+    <p>Aucun catway enregistré pour le moment.</p>
+  <% } else { %>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr style="background-color: #007bff; color: white;">
+          <th style="padding: 10px; border: 1px solid #ccc;">Numéro</th>
+          <th style="padding: 10px; border: 1px solid #ccc;">Type</th>
+          <th style="padding: 10px; border: 1px solid #ccc;">État</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% catways.forEach(catway => { %>
+          <tr style="background-color: #fff;">
+            <td style="padding: 10px; border: 1px solid #ccc;"><%= catway.catwayNumber %></td>
+            <td style="padding: 10px; border: 1px solid #ccc;"><%= catway.catwayType %></td>
+            <td style="padding: 10px; border: 1px solid #ccc;"><%= catway.catwayState %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <a href="/dashboard" style="display: block; margin-top: 20px; color: #004a99;">← Retour au tableau de bord</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un utilisateur</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Ajouter un utilisateur</h1>
+
+    <% if (typeof error !== 'undefined') { %>
+      <p style="color: red;">❌ <%= error %></p>
+    <% } %>
+
+    <form action="/users" method="POST">
+      <label>Email :
+        <input type="email" name="email" required value="<%= typeof email !== 'undefined' ? email : '' %>">
+      </label><br><br>
+
+      <label>Nom d'utilisateur :
+        <input type="text" name="username" required value="<%= typeof username !== 'undefined' ? username : '' %>">
+      </label><br><br>
+
+      <label>Mot de passe :
+        <input type="password" name="password" required>
+      </label><br><br>
+
+      <button type="submit">Créer</button>
+    </form>
+
+    <a href="/users" style="display: block; margin-top: 20px;">← Retour à la liste</a>
+  </main>
+</body>
+</html>
