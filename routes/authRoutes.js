@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-
-// 👇 Ces deux modèles sont nécessaires pour les statistiques
+const { isAuthenticated } = require('../middlewares/authMiddleware');
 const Catway = require('../models/Catway');
 const Reservation = require('../models/Reservation');
 

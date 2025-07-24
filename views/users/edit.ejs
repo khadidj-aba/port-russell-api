@@ -12,8 +12,6 @@
     <% if (typeof error !== 'undefined') { %>
       <p style="color: red;">❌ <%= error %></p>
     <% } %>
-
-    <!-- ✅ FORMULAIRE CORRIGÉ -->
     <form action="/users/<%= user._id %>?_method=PUT" method="POST">
       <label>Email :
         <input type="email" name="email" required value="<%= user.email %>">

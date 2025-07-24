@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <title>Tableau de bord - Port Russell</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
   <!-- En-tête -->
   <header class="dashboard-header">
     <div class="header-left">
-      <img src="/assets/images/logo-port.png" alt="Logo du port" class="logo" />
+        <img src="/assets/images/logo-port.png" alt="Logo du port" class="logo" />
       <h1>Tableau de bord</h1>
     </div>
     <div class="header-right">
@@ -32,47 +33,48 @@
     </ul>
   </nav>
 
-  <!-- Statistiques globales -->
-  <section class="stats-section">
-    <h2>Statistiques générales</h2>
-    <ul class="stats-list">
-      <li>🛥️ Catways disponibles : <strong><%= catwayCount %></strong></li>
-      <li>📅 Réservations totales : <strong><%= reservationCount %></strong></li>
-      <li>👥 Utilisateurs inscrits : <strong><%= userCount %></strong></li>
-    </ul>
-  </section>
+  <!-- Contenu principal -->
+  <main>
+    <!-- Statistiques globales -->
+    <section class="dashboard-stats">
+      <h2>Statistiques générales</h2>
+      <ul class="stats-list">
+        <li>🛥️ Catways disponibles : <strong><%= catwayCount %></strong></li>
+        <li>📅 Réservations totales : <strong><%= reservationCount %></strong></li>
+        <li>👥 Utilisateurs inscrits : <strong><%= userCount %></strong></li>
+      </ul>
+    </section>
 
-  <!-- Contenu -->
- <section class="active-reservations">
-  <h2>Vos réservations en cours</h2>
+    <!-- Réservations en cours -->
+    <section class="active-reservations">
+      <h2>Vos réservations en cours</h2>
 
-  <% if (activeReservations.length === 0) { %>
-    <p>Vous n'avez aucune réservation active.</p>
-  <% } else { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Catway</th>
-          <th>Bateau</th>
-          <th>Début</th>
-          <th>Fin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% activeReservations.forEach(res => { %>
-          <tr>
-            <td><%= res.catway && res.catway.number ? res.catway.number : "?" %></td>
-            <td><%= res.boatName %></td>
-            <td><%= res.startDate.toLocaleDateString('fr-FR') %></td>
-            <td><%= res.endDate.toLocaleDateString('fr-FR') %></td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  <% } %>
-</section>
-
+      <% if (activeReservations.length === 0) { %>
+        <p>Vous n'avez aucune réservation active.</p>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Catway</th>
+              <th>Bateau</th>
+              <th>Début</th>
+              <th>Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% activeReservations.forEach(res => { %>
+              <tr>
+                <td><%= res.catway && res.catway.number ? res.catway.number : "?" %></td>
+                <td><%= res.boatName %></td>
+                <td><%= res.startDate.toLocaleDateString('fr-FR') %></td>
+                <td><%= res.endDate.toLocaleDateString('fr-FR') %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </section>
+  </main>
 
 </body>
 </html>
-

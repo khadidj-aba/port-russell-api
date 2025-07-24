@@ -1,15 +1,9 @@
-// controllers/authController.js
-
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
-/**
- * Inscription d’un utilisateur
- */
 exports.register = async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    // Vérifie si l’email est déjà utilisé
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).send('Adresse email déjà utilisée.');
@@ -18,18 +12,19 @@ exports.register = async (req, res) => {
     const user = new User({ username, email, password });
     await user.save();
 
-    // Stocker les infos en session
-    req.session.user = { id: user._id, email: user.email, username: user.username };
-    res.redirect('/dashboard'); // ou autre route protégée
+    req.session.user = {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+      role: user.role
+    };
+    res.redirect('/dashboard');
   } catch (err) {
     console.error(err);
     res.status(500).send('Erreur serveur');
   }
 };
 
-/**
- * Connexion d’un utilisateur
- */
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -39,7 +34,12 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).send('Mot de passe incorrect');
 
-    req.session.user = { id: user._id, email: user.email, username: user.username };
+    req.session.user = {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+      role: user.role
+    };
     res.redirect('/dashboard');
   } catch (err) {
     console.error(err);
@@ -47,9 +47,6 @@ exports.login = async (req, res) => {
   }
 };
 
-/**
- * Déconnexion
- */
 exports.logout = (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');

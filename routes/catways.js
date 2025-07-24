@@ -1,5 +1,3 @@
-// routes/catways.js
-
 const express = require('express');
 const router = express.Router();
 const Catway = require('../models/Catway');
@@ -26,7 +24,7 @@ router.get('/new', ensureAuthenticated, (req, res) => {
   res.render('catways/new', { message: null });
 });
 
-// ✅ POST /catways — traitement du formulaire
+// ✅ POST /catways — enregistrement d’un nouveau catway
 router.post('/', ensureAuthenticated, async (req, res) => {
   try {
     const { catwayNumber, catwayType, catwayState } = req.body;
@@ -44,6 +42,45 @@ router.post('/', ensureAuthenticated, async (req, res) => {
     res.redirect('/catways');
   } catch (err) {
     console.error('Erreur POST /catways :', err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+// ✅ GET /catways/:id/edit — formulaire de modification
+router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
+  try {
+    const catway = await Catway.findById(req.params.id).lean();
+    if (!catway) return res.status(404).send('Catway non trouvé');
+    res.render('catways/edit', { catway });
+  } catch (err) {
+    console.error('Erreur GET /catways/:id/edit :', err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+// ✅ PUT /catways/:id — enregistrer la modification
+router.put('/:id', ensureAuthenticated, async (req, res) => {
+  try {
+    const { catwayNumber, catwayType, catwayState } = req.body;
+    await Catway.findByIdAndUpdate(req.params.id, {
+      catwayNumber,
+      catwayType,
+      catwayState
+    });
+    res.redirect('/catways');
+  } catch (err) {
+    console.error('Erreur PUT /catways/:id :', err.message);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+// ✅ DELETE /catways/:id — suppression
+router.delete('/:id', ensureAuthenticated, async (req, res) => {
+  try {
+    await Catway.findByIdAndDelete(req.params.id);
+    res.redirect('/catways');
+  } catch (err) {
+    console.error('Erreur DELETE /catways/:id :', err.message);
     res.status(500).send('Erreur serveur');
   }
 });
