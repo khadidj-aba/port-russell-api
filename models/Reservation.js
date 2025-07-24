@@ -9,12 +9,14 @@ const reservationSchema = new mongoose.Schema({
   clientName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    minlength: 2
   },
   boatName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    minlength: 2
   },
   startDate: {
     type: Date,
@@ -22,7 +24,13 @@ const reservationSchema = new mongoose.Schema({
   },
   endDate: {
     type: Date,
-    required: true
+    required: true,
+    validate: {
+      validator: function (value) {
+        return value >= this.startDate;
+      },
+      message: 'La date de fin doit être supérieure ou égale à la date de début.'
+    }
   }
 }, {
   timestamps: true

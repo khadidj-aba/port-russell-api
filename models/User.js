@@ -1,11 +1,5 @@
-// models/User.js
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
-/**
- * Schéma utilisateur pour la capitainerie
- */
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -28,18 +22,14 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['admin', 'user'],
-    default: 'user' // 👈 Par défaut, l'utilisateur est un simple utilisateur
+    default: 'user'
   }
 }, {
   timestamps: true
 });
 
-/**
- * Middleware Mongoose :
- * Hash du mot de passe avant enregistrement en BDD
- */
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next(); // éviter de rehacher le mot de passe
+  if (!this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
@@ -50,7 +40,7 @@ userSchema.pre('save', async function (next) {
 });
 
 /**
- * Méthode personnalisée : comparer mot de passe
+ * Méthode personnalisée pour vérifier un mot de passe
  */
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);

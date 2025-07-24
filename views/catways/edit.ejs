@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier le Catway <%= catway.catwayNumber %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <main>
+    <h2>Modifier le Catway <%= catway.catwayNumber %></h2>
+
+    <form action="/catways/<%= catway._id %>?_method=PUT" method="POST">
+      <p>Numéro : <strong><%= catway.catwayNumber %></strong></p>
+      <p>Type : <strong><%= catway.catwayType %></strong></p>
+
+      <label for="catwayState">État :</label>
+      <select name="catwayState" required>
+        <option value="libre" <%= catway.catwayState === 'libre' ? 'selected' : '' %>>Libre</option>
+        <option value="occupé" <%= catway.catwayState === 'occupé' ? 'selected' : '' %>>Occupé</option>
+      </select>
+
+      <br><br>
+      <button type="submit">✅ Mettre à jour</button>
+    </form>
+
+    <form action="/catways/<%= catway._id %>?_method=DELETE" method="POST" style="margin-top: 10px;">
+      <button type="submit" style="color: red;">🗑 Supprimer ce Catway</button>
+    </form>
+
+    <br>
+    <a href="/catways">← Retour à la liste</a>
+  </main>
+
+</body>
+</html>

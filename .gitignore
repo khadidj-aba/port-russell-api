@@ -1,0 +1,5 @@
+# Ne jamais versionner les modules Node
+node_modules/
+
+# Ne jamais versionner les variables sensibles
+.env

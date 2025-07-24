@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
-app.use(methodOverride('_method')); // ✅ doit être avant les routes
+app.use(methodOverride('_method')); // ✅ 
 
 // ✅ Middleware session
 app.use(session({
@@ -54,6 +54,7 @@ app.use(authRoutes);
 app.use('/catways', catwaysRoutes);
 app.use('/reservations', reservationsRoutes);
 app.use('/users', usersRoutes); // ✅ placée APRÈS les sessions
+app.use(express.static('public'));
 
 // ✅ Redirection par défaut
 app.get('/', (req, res) => {
@@ -71,4 +72,8 @@ app.listen(PORT, () => {
   console.log(`✅ Serveur en écoute sur le port ${PORT}`);
 });
 
+const homeRoutes = require('./routes/home');
+app.use(homeRoutes);
 
+const docsRoutes = require('./routes/docs');
+app.use(docsRoutes);

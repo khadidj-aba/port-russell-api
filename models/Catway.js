@@ -1,15 +1,11 @@
-// models/Catway.js
-
 const mongoose = require('mongoose');
 
-/**
- * Schéma des catways (appontements)
- */
 const catwaySchema = new mongoose.Schema({
   catwayNumber: {
     type: Number,
     required: true,
-    unique: true
+    unique: true,
+    min: 1
   },
   catwayType: {
     type: String,
@@ -18,8 +14,8 @@ const catwaySchema = new mongoose.Schema({
   },
   catwayState: {
     type: String,
-    enum: ['libre', 'occupé'],
-    required: true
+    default: 'libre',
+    trim: true
   }
 }, {
   timestamps: true
