@@ -38,6 +38,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
       return res.render('catways/new', { message: '❌ Ce numéro existe déjà' });
     }
 
+    // pour envoyer un message d'erreur
     await Catway.create({ catwayNumber, catwayType, catwayState });
     res.redirect('/catways');
   } catch (err) {
