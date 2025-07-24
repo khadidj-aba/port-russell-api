@@ -61,7 +61,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
         messages: { error: ['❌ Ce catway est déjà réservé sur cette période.'] }
       });
     }
-
+   // ✅ Message d'erreur
     await Reservation.create({ catwayNumber, clientName, boatName, startDate, endDate });
     res.redirect('/reservations');
   } catch (err) {
